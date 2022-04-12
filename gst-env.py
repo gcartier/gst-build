@@ -62,9 +62,6 @@ def stringify(o):
 def prepend_env_var(env, var, value, sysroot):
     if value.startswith(sysroot):
         value = value[len(sysroot):]
-    # Try not to exceed maximum length limits for env vars on Windows
-    if os.name == 'nt':
-        value = win32_get_short_path_name(value)
     env_val = env.get(var, '')
     val = os.pathsep + value + os.pathsep
     # Don't add the same value twice
